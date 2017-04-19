@@ -4,3 +4,6 @@ Content\Textures\TitleScreen.xnb
 Content\Fonts\Pericles14.xnb
 Content\Textures\GameOver.xnb
 Content\Sounds\jump.xnb
+Content\Sounds\cantTouch.xnb
+Content\Textures\NewGameButton.xnb
+Content\Sounds\cantTouch.wma

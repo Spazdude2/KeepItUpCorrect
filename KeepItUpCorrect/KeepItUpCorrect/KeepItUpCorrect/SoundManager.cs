@@ -15,7 +15,7 @@ namespace KeepItUpCorrect
     class SoundManager
     {
         private static SoundEffect jump;
-        private static SoundEffect loser;
+        private static Song cantTouch;
 
 
         public static void Initialize(ContentManager content)
@@ -23,8 +23,8 @@ namespace KeepItUpCorrect
             try
             {
                 jump = content.Load<SoundEffect>(@"Sounds\jump");
+                cantTouch = content.Load<Song>(@"Sounds\cantTouch");
             }
-
             catch
             {
                 Debug.Write("SoundManager Initialization Failed");
@@ -43,19 +43,23 @@ namespace KeepItUpCorrect
             }
         }
 
-        public static void playLoser()
+        public static void playcantTouch()
         {
             try
             {
-
+                if (MediaPlayer.State != MediaState.Playing)
+                   MediaPlayer.Play(cantTouch);
             }
             catch
             {
-
+                Debug.Write("cantTouch failed");
             }
         }
 
-
+        public static void stopSongs()
+        {
+            MediaPlayer.Stop();
+        }
 
     }
 }

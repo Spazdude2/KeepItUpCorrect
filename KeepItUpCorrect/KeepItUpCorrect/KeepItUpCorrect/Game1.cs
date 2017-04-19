@@ -33,6 +33,7 @@ namespace KeepItUpCorrect
         bool clicked = false, pdown = false;
 
         Sprite ball;
+        Sprite newgame;
 
         int clicks = 0;  //Score
         
@@ -79,6 +80,12 @@ namespace KeepItUpCorrect
                 new Vector2(this.Window.ClientBounds.Width/2, this.Window.ClientBounds.Height/2),
                 spriteSheet,
                 new Rectangle(0,0,190,150),
+                Vector2.Zero);
+
+            newgame = new Sprite(
+                new Vector2(this.Window.ClientBounds.Width / 2 - 351/2, this.Window.ClientBounds.Height-135-50),
+                spriteSheet,
+                new Rectangle(591, 326, 351, 135),
                 Vector2.Zero);
 
 
@@ -166,10 +173,11 @@ namespace KeepItUpCorrect
                         clicked = false;
 
 
-                    if (ball.Location.Y >= 650  || ball.Location.X <=0)
+                    if (ball.Location.Y >= 650  || ball.Location.X <=0 || ball.Location.X >= 825)
                     {
                         clicks = 0;
                         gameState = GameStates.GameOver;
+                        SoundManager.playcantTouch();
                     }
 
                     /*
@@ -200,9 +208,13 @@ namespace KeepItUpCorrect
                     break;
 
                 case GameStates.GameOver:
-                    if(ms.LeftButton == ButtonState.Pressed && !clicked)
+
+
+                    if (ms.LeftButton == ButtonState.Pressed && !clicked)
                     {
                         gameState = GameStates.Playing;
+
+                        SoundManager.stopSongs();
 
                         ball = new Sprite(
                             new Vector2(this.Window.ClientBounds.Width / 2, this.Window.ClientBounds.Height / 2),
@@ -260,10 +272,14 @@ namespace KeepItUpCorrect
 
             if(gameState == GameStates.GameOver)
             {
+                
+
                 spriteBatch.Draw(gameOver,
                     new Rectangle(0, 0, this.Window.ClientBounds.Width,
                         this.Window.ClientBounds.Height),
                         Color.White);
+
+                newgame.Draw(spriteBatch);
             }
 
 
