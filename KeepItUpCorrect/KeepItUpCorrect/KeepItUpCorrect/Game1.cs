@@ -24,14 +24,17 @@ namespace KeepItUpCorrect
         Texture2D spriteSheet;
         Texture2D Background;
         Texture2D gameOver;
+        Texture2D dogg;
 
         bool isAlGay = true;
         bool isAlStupid = true;
         bool isAlCool = false;
+        bool is420 = false;
 
 
         bool clicked = false, pdown = false;
 
+        Sprite dog;
         Sprite ball;
         Sprite newgame;
 
@@ -75,13 +78,25 @@ namespace KeepItUpCorrect
             spriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet");
             Background = Content.Load<Texture2D>(@"Textures\Background");
             gameOver = Content.Load<Texture2D>(@"Textures\GameOver");
+            dogg = Content.Load<Texture2D>(@"Textures\dogg");
 
-            ball = new Sprite(
-                new Vector2(this.Window.ClientBounds.Width/2, this.Window.ClientBounds.Height/2),
-                spriteSheet,
-                new Rectangle(0,0,190,150),
+            if (!is420)
+            {
+                ball = new Sprite(
+                    new Vector2(this.Window.ClientBounds.Width / 2, this.Window.ClientBounds.Height / 2),
+                    spriteSheet,
+                    new Rectangle(0, 0, 190, 150),
+                    Vector2.Zero);
+            }
+
+            if (is420)
+            {
+                dog = new Sprite(
+                new Vector2(this.Window.ClientBounds.Width / 2, this.Window.ClientBounds.Height / 2),
+                dogg,
+                new Rectangle(0, 0, 190, 150),
                 Vector2.Zero);
-
+            }
             newgame = new Sprite(
                 new Vector2(this.Window.ClientBounds.Width / 2 - 351/2, this.Window.ClientBounds.Height-135-50),
                 spriteSheet,
@@ -129,6 +144,16 @@ namespace KeepItUpCorrect
 
                 case GameStates.Playing:
 
+                    if(kb.IsKeyDown(Keys.D4))
+                    {
+                        is420 = true;
+
+                        dog = new Sprite(
+                            new Vector2(this.Window.ClientBounds.Width / 2, this.Window.ClientBounds.Height / 2),
+                            dogg,
+                            new Rectangle(0, 0, 200, 200),
+                            Vector2.Zero);
+                    }
                     if (kb.IsKeyDown(Keys.P) && !pdown)
                     {
                         gameState = GameStates.Pause;
@@ -255,13 +280,21 @@ namespace KeepItUpCorrect
                         this.Window.ClientBounds.Height),
                         Color.White);
 
-                ball.Draw(spriteBatch);
+                if (!is420)
+                {
+                    ball.Draw(spriteBatch);
+                }
                 
                     spriteBatch.DrawString(
                         pericles14,
                         "Score: " + clicks.ToString(),
                         scoreLocation,
                         Color.Black);
+                if(is420)
+                {
+                    
+                    dog.Draw(spriteBatch);
+                }
                 
             }
 

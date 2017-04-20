@@ -74,6 +74,15 @@
       <Output>C:\Users\eahscs\Documents\GitHub\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\bin\x86\Debug\Content\Textures\NewGameButton.xnb</Output>
       <Time>2017-04-19T12:57:36.792392-04:00</Time>
     </Item>
+    <Item>
+      <Source>Textures\dogg.png</Source>
+      <Name>Textures\dogg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\eahscs\Documents\GitHub\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\bin\x86\Debug\Content\Textures\dogg.xnb</Output>
+      <Time>2017-04-20T12:18:02.9710855-04:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{2F236EC9-5466-43A3-A141-59AC6E6B8A05}</ContentProjectGUID>
