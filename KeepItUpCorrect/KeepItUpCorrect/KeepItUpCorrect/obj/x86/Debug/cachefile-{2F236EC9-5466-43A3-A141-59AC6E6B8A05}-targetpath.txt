@@ -8,3 +8,4 @@ Content\Sounds\cantTouch.xnb
 Content\Sounds\cantTouch.wma
 Content\Textures\NewGameButton.xnb
 Content\Textures\dogg.xnb
+Content\Textures\Pause.xnb

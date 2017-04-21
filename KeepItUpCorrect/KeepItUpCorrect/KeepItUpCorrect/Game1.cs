@@ -18,17 +18,16 @@ namespace KeepItUpCorrect
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        enum GameStates { TitleScreen, Playing, GameOver, Pause };
+        enum GameStates { TitleScreen, CharacterSelection, Playing, GameOver, Pause };
         GameStates gameState = GameStates.TitleScreen;
         Texture2D titleScreen;
         Texture2D spriteSheet;
         Texture2D Background;
         Texture2D gameOver;
         Texture2D dogg;
+        Texture2D pause;
 
-        bool isAlGay = true;
-        bool isAlStupid = true;
-        bool isAlCool = false;
+   
         bool is420 = false;
 
 
@@ -79,13 +78,14 @@ namespace KeepItUpCorrect
             Background = Content.Load<Texture2D>(@"Textures\Background");
             gameOver = Content.Load<Texture2D>(@"Textures\GameOver");
             dogg = Content.Load<Texture2D>(@"Textures\dogg");
+            pause = Content.Load<Texture2D>(@"Textures\Pause");
 
             if (!is420)
             {
                 ball = new Sprite(
-                    new Vector2(this.Window.ClientBounds.Width / 2, this.Window.ClientBounds.Height / 2),
+                    new Vector2(this.Window.ClientBounds.Width / 2 - 400, this.Window.ClientBounds.Height / 2 - 200),
                     spriteSheet,
-                    new Rectangle(0, 0, 190, 150),
+                    new Rectangle(0, 0, 802, 233),
                     Vector2.Zero);
             }
 
@@ -137,9 +137,56 @@ namespace KeepItUpCorrect
                 case GameStates.TitleScreen:
                     if (kb.IsKeyDown(Keys.Space))
                     {
-                        gameState = GameStates.Playing;
+                        gameState = GameStates.CharacterSelection;
                        
                     }
+                    break;
+
+                case GameStates.CharacterSelection:
+                    if (kb.IsKeyDown(Keys.C))
+                    {
+                        ball = new Sprite(
+                            new Vector2(this.Window.ClientBounds.Width / 2, this.Window.ClientBounds.Height / 2),
+                            spriteSheet,
+                            new Rectangle(0, 0, 190, 150),
+                            Vector2.Zero);
+
+                        gameState = GameStates.Playing;
+                    }
+
+                    if (kb.IsKeyDown(Keys.D))
+                    {
+                        ball = new Sprite(
+                            new Vector2(this.Window.ClientBounds.Width / 2, this.Window.ClientBounds.Height / 2),
+                            spriteSheet,
+                            new Rectangle(200, 0, 200, 164),
+                            Vector2.Zero);
+
+                        gameState = GameStates.Playing;
+                    }
+
+                    if (kb.IsKeyDown(Keys.I))
+                    {
+                        ball = new Sprite(
+                            new Vector2(this.Window.ClientBounds.Width / 2, this.Window.ClientBounds.Height / 2),
+                            spriteSheet,
+                            new Rectangle(410, 0, 450, 164),
+                            Vector2.Zero);
+
+                        gameState = GameStates.Playing;
+                    }
+
+                    if (kb.IsKeyDown(Keys.S))
+                    {
+                        ball = new Sprite(
+                            new Vector2(this.Window.ClientBounds.Width / 2, this.Window.ClientBounds.Height / 2),
+                            spriteSheet,
+                            new Rectangle(609, 0, 800, 164),
+                            Vector2.Zero);
+
+                        gameState = GameStates.Playing;
+                    }
+
                     break;
 
                 case GameStates.Playing:
@@ -148,10 +195,10 @@ namespace KeepItUpCorrect
                     {
                         is420 = true;
 
-                        dog = new Sprite(
+                        ball = new Sprite(
                             new Vector2(this.Window.ClientBounds.Width / 2, this.Window.ClientBounds.Height / 2),
                             dogg,
-                            new Rectangle(0, 0, 200, 200),
+                            new Rectangle(0, 0, 300, 375),
                             Vector2.Zero);
                     }
                     if (kb.IsKeyDown(Keys.P) && !pdown)
@@ -234,17 +281,17 @@ namespace KeepItUpCorrect
 
                 case GameStates.GameOver:
 
-
-                    if (ms.LeftButton == ButtonState.Pressed && !clicked)
+                    Vector2 clicker = new Vector2(ms.X, ms.Y);
+                    if (ms.LeftButton == ButtonState.Pressed && !clicked && Vector2.Distance(clicker, newgame.Center) < newgame.BoundingBoxRect.Height / 2)
                     {
-                        gameState = GameStates.Playing;
+                        gameState = GameStates.CharacterSelection;
 
                         SoundManager.stopSongs();
 
                         ball = new Sprite(
-                            new Vector2(this.Window.ClientBounds.Width / 2, this.Window.ClientBounds.Height / 2),
+                            new Vector2(this.Window.ClientBounds.Width / 2 - 400, this.Window.ClientBounds.Height / 2 - 200),
                             spriteSheet,
-                            new Rectangle(0, 0, 200, 200),
+                            new Rectangle(0, 0, 802, 233),
                             Vector2.Zero);
                     }
                     else if (ms.LeftButton == ButtonState.Released)
@@ -260,7 +307,7 @@ namespace KeepItUpCorrect
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
@@ -292,15 +339,17 @@ namespace KeepItUpCorrect
                         Color.Black);
                 if(is420)
                 {
-                    
-                    dog.Draw(spriteBatch);
+                    ball.Draw(spriteBatch);
                 }
                 
             }
 
             if(gameState == GameStates.Pause)
             {
-                //code here loser
+                spriteBatch.Draw(pause,
+                    new Rectangle(0, 0, this.Window.ClientBounds.Width,
+                        this.Window.ClientBounds.Height),
+                        Color.White);
             }
 
             if(gameState == GameStates.GameOver)
@@ -315,6 +364,10 @@ namespace KeepItUpCorrect
                 newgame.Draw(spriteBatch);
             }
 
+            if (gameState == GameStates.CharacterSelection)
+            {
+                ball.Draw(spriteBatch);
+            }
 
             spriteBatch.End();
 
