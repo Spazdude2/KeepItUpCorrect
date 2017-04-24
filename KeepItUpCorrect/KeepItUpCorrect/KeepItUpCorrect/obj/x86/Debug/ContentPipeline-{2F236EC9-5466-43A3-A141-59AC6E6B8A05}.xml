@@ -8,7 +8,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\eahscs\Documents\GitHub\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\bin\x86\Debug\Content\Textures\Background.xnb</Output>
-      <Time>2017-04-21T12:01:30.9625944-04:00</Time>
+      <Time>2017-04-24T10:58:12.7346264-04:00</Time>
     </Item>
     <Item>
       <Source>Textures\SpriteSheet.png</Source>
@@ -17,7 +17,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\eahscs\Documents\GitHub\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\bin\x86\Debug\Content\Textures\SpriteSheet.xnb</Output>
-      <Time>2017-04-21T13:05:24.6025716-04:00</Time>
+      <Time>2017-04-24T11:26:50.4375702-04:00</Time>
     </Item>
     <Item>
       <Source>Textures\TitleScreen.png</Source>
@@ -26,7 +26,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\eahscs\Documents\GitHub\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\bin\x86\Debug\Content\Textures\TitleScreen.xnb</Output>
-      <Time>2017-04-21T12:01:30.9756025-04:00</Time>
+      <Time>2017-04-24T10:58:12.9330696-04:00</Time>
     </Item>
     <Item>
       <Source>Fonts\Pericles14.spritefont</Source>
@@ -35,7 +35,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\eahscs\Documents\GitHub\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\bin\x86\Debug\Content\Fonts\Pericles14.xnb</Output>
-      <Time>2017-04-21T12:01:30.4274109-04:00</Time>
+      <Time>2017-04-24T10:58:12.2311771-04:00</Time>
     </Item>
     <Item>
       <Source>Textures\GameOver.png</Source>
@@ -44,7 +44,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\eahscs\Documents\GitHub\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\bin\x86\Debug\Content\Textures\GameOver.xnb</Output>
-      <Time>2017-04-21T12:01:30.9635947-04:00</Time>
+      <Time>2017-04-24T10:58:12.735619-04:00</Time>
     </Item>
     <Item>
       <Source>Sounds\jump.wav</Source>
@@ -53,7 +53,7 @@
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\eahscs\Documents\GitHub\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\bin\x86\Debug\Content\Sounds\jump.xnb</Output>
-      <Time>2017-04-21T12:01:30.9155603-04:00</Time>
+      <Time>2017-04-24T10:58:12.6835009-04:00</Time>
     </Item>
     <Item>
       <Source>Sounds\cantTouch.wav</Source>
@@ -63,7 +63,7 @@
       <Options>None</Options>
       <Output>C:\Users\eahscs\Documents\GitHub\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\bin\x86\Debug\Content\Sounds\cantTouch.xnb</Output>
       <Extra>C:\Users\eahscs\Documents\GitHub\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\bin\x86\Debug\Content\Sounds\cantTouch.wma</Extra>
-      <Time>2017-04-21T12:01:30.9115571-04:00</Time>
+      <Time>2017-04-24T10:58:12.6784918-04:00</Time>
     </Item>
     <Item>
       <Source>Textures\NewGameButton.png</Source>
@@ -72,7 +72,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\eahscs\Documents\GitHub\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\bin\x86\Debug\Content\Textures\NewGameButton.xnb</Output>
-      <Time>2017-04-21T12:01:30.9645954-04:00</Time>
+      <Time>2017-04-24T10:58:12.735619-04:00</Time>
     </Item>
     <Item>
       <Source>Textures\dogg.png</Source>
@@ -81,7 +81,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\eahscs\Documents\GitHub\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\bin\x86\Debug\Content\Textures\dogg.xnb</Output>
-      <Time>2017-04-21T12:01:30.9776047-04:00</Time>
+      <Time>2017-04-24T10:58:12.9340696-04:00</Time>
     </Item>
     <Item>
       <Source>Textures\Pause.png</Source>
@@ -90,7 +90,47 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\eahscs\Documents\GitHub\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\bin\x86\Debug\Content\Textures\Pause.xnb</Output>
-      <Time>2017-04-21T12:23:38.8180752-04:00</Time>
+      <Time>2017-04-24T10:58:12.7396222-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\'murica.wav</Source>
+      <Name>Sounds\'murica</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\eahscs\Documents\GitHub\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\bin\x86\Debug\Content\Sounds\'murica.xnb</Output>
+      <Extra>C:\Users\eahscs\Documents\GitHub\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\bin\x86\Debug\Content\Sounds\'murica.wma</Extra>
+      <Time>2017-04-24T11:41:57.2794951-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\deadpool.wav</Source>
+      <Name>Sounds\deadpool</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\eahscs\Documents\GitHub\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\bin\x86\Debug\Content\Sounds\deadpool.xnb</Output>
+      <Extra>C:\Users\eahscs\Documents\GitHub\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\bin\x86\Debug\Content\Sounds\deadpool.wma</Extra>
+      <Time>2017-04-24T11:36:33.0816017-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\ironman.wav</Source>
+      <Name>Sounds\ironman</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\eahscs\Documents\GitHub\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\bin\x86\Debug\Content\Sounds\ironman.xnb</Output>
+      <Extra>C:\Users\eahscs\Documents\GitHub\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\bin\x86\Debug\Content\Sounds\ironman.wma</Extra>
+      <Time>2017-04-24T11:39:19.7803686-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\spiderman.wav</Source>
+      <Name>Sounds\spiderman</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\eahscs\Documents\GitHub\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\bin\x86\Debug\Content\Sounds\spiderman.xnb</Output>
+      <Extra>C:\Users\eahscs\Documents\GitHub\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\KeepItUpCorrect\bin\x86\Debug\Content\Sounds\spiderman.wma</Extra>
+      <Time>2017-04-24T11:33:49.8631631-04:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

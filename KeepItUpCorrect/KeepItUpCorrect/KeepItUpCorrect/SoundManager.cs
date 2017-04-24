@@ -17,6 +17,11 @@ namespace KeepItUpCorrect
         private static SoundEffect jump;
         private static Song cantTouch;
 
+        private static Song america;
+        private static Song deadpool;
+        private static Song ironman;
+        private static Song spiderman;
+
 
         public static void Initialize(ContentManager content)
         {
@@ -24,6 +29,11 @@ namespace KeepItUpCorrect
             {
                 jump = content.Load<SoundEffect>(@"Sounds\jump");
                 cantTouch = content.Load<Song>(@"Sounds\cantTouch");
+
+                america = content.Load<Song>(@"Sounds\'murica");
+                deadpool = content.Load<Song>(@"Sounds\deadpool");
+                ironman = content.Load<Song>(@"Sounds\ironman");
+                spiderman = content.Load<Song>(@"Sounds\spiderman");
             }
             catch
             {
@@ -56,6 +66,57 @@ namespace KeepItUpCorrect
             }
         }
 
+        public static void playamerica()
+        {
+            try
+            {
+                MediaPlayer.Play(america);
+            }
+
+            catch
+            {
+                Debug.Write("america failed");
+            }
+        }
+
+        public static void playdeadpool()
+        {
+            try
+            {
+                MediaPlayer.Play(deadpool);
+            }
+
+            catch
+            {
+                Debug.Write("deadpool failed");
+            }
+        }
+
+        public static void playironman()
+        {
+            try
+            {
+                MediaPlayer.Play(ironman);
+            }
+
+            catch
+            {
+                Debug.Write("ironman failed");
+            }
+        }
+
+        public static void playspiderman()
+        {
+            try
+            {
+                MediaPlayer.Play(spiderman);
+            }
+
+            catch
+            {
+                Debug.Write("spiderman failed");
+            }
+        }
         public static void stopSongs()
         {
             MediaPlayer.Stop();

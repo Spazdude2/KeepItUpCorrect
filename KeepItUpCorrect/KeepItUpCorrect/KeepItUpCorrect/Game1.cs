@@ -31,6 +31,7 @@ namespace KeepItUpCorrect
         bool is420 = false;
 
 
+
         bool clicked = false, pdown = false;
 
         Sprite dog;
@@ -152,9 +153,10 @@ namespace KeepItUpCorrect
                             Vector2.Zero);
 
                         gameState = GameStates.Playing;
+                        SoundManager.playamerica();
                     }
 
-                    if (kb.IsKeyDown(Keys.D))
+                    else if (kb.IsKeyDown(Keys.D))
                     {
                         ball = new Sprite(
                             new Vector2(this.Window.ClientBounds.Width / 2, this.Window.ClientBounds.Height / 2),
@@ -163,42 +165,45 @@ namespace KeepItUpCorrect
                             Vector2.Zero);
 
                         gameState = GameStates.Playing;
+                        SoundManager.playdeadpool();
                     }
 
-                    if (kb.IsKeyDown(Keys.I))
+                    else if (kb.IsKeyDown(Keys.I))
                     {
                         ball = new Sprite(
                             new Vector2(this.Window.ClientBounds.Width / 2, this.Window.ClientBounds.Height / 2),
                             spriteSheet,
-                            new Rectangle(410, 0, 450, 164),
+                            new Rectangle(415, 0, 190, 160),
                             Vector2.Zero);
 
                         gameState = GameStates.Playing;
+                        SoundManager.playironman();
                     }
 
-                    if (kb.IsKeyDown(Keys.S))
+                    else if (kb.IsKeyDown(Keys.S))
                     {
                         ball = new Sprite(
                             new Vector2(this.Window.ClientBounds.Width / 2, this.Window.ClientBounds.Height / 2),
                             spriteSheet,
-                            new Rectangle(609, 0, 800, 164),
+                            new Rectangle(600, 0, 200, 160),
                             Vector2.Zero);
 
                         gameState = GameStates.Playing;
+                        SoundManager.playspiderman();
                     }
 
                     break;
 
                 case GameStates.Playing:
 
-                    if(kb.IsKeyDown(Keys.D4))
+                    if(kb.IsKeyDown(Keys.D4) && kb.IsKeyDown(Keys.D2) && kb.IsKeyDown(Keys.D0))
                     {
                         is420 = true;
 
                         ball = new Sprite(
                             new Vector2(this.Window.ClientBounds.Width / 2, this.Window.ClientBounds.Height / 2),
                             dogg,
-                            new Rectangle(0, 0, 300, 375),
+                            new Rectangle(0, 0, 300, 395),
                             Vector2.Zero);
                     }
                     if (kb.IsKeyDown(Keys.P) && !pdown)
@@ -249,6 +254,7 @@ namespace KeepItUpCorrect
                     {
                         clicks = 0;
                         gameState = GameStates.GameOver;
+                        SoundManager.stopSongs();
                         SoundManager.playcantTouch();
                     }
 
@@ -281,6 +287,7 @@ namespace KeepItUpCorrect
 
                 case GameStates.GameOver:
 
+                    
                     Vector2 clicker = new Vector2(ms.X, ms.Y);
                     if (ms.LeftButton == ButtonState.Pressed && !clicked && Vector2.Distance(clicker, newgame.Center) < newgame.BoundingBoxRect.Height / 2)
                     {

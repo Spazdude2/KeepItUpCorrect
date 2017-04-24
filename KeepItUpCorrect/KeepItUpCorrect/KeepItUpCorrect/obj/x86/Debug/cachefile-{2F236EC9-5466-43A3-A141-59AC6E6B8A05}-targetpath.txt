@@ -9,3 +9,11 @@ Content\Sounds\cantTouch.wma
 Content\Textures\NewGameButton.xnb
 Content\Textures\dogg.xnb
 Content\Textures\Pause.xnb
+Content\Sounds\'murica.xnb
+Content\Sounds\'murica.wma
+Content\Sounds\deadpool.xnb
+Content\Sounds\deadpool.wma
+Content\Sounds\ironman.xnb
+Content\Sounds\ironman.wma
+Content\Sounds\spiderman.xnb
+Content\Sounds\spiderman.wma
