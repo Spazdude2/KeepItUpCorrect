@@ -8,101 +8,313 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.Diagnostics;
 
 namespace KeepItUpCorrect
 {
-    /// <summary>
     /// This is the main type for your game
-    /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        enum GameStates { TitleScreen, Playing, GameOver };
+        enum GameStates { TitleScreen, CharacterSelection, Playing, GameOver, Pause };
         GameStates gameState = GameStates.TitleScreen;
         Texture2D titleScreen;
         Texture2D spriteSheet;
         Texture2D Background;
+        Texture2D gameOver;
+        Texture2D dogg;
+        Texture2D pause;
+
+   
+        bool is420 = false;
+
+
+
+        bool clicked = false, pdown = false;
+
+        Sprite dog;
+        Sprite ball;
+        Sprite newgame;
+
+        int clicks = 0;  //Score
+        
+
+        public Vector2 scoreLocation = new Vector2(20, 10);
+        SpriteFont pericles14;
 
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.IsFullScreen = false;
+            graphics.PreferredBackBufferWidth = 1024;
+            graphics.PreferredBackBufferHeight = 768;
             Content.RootDirectory = "Content";
         }
 
-        /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
         /// related content.  Calling base.Initialize will enumerate through any components
         /// and initialize them as well.
-        /// </summary>
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
 
+            this.IsMouseVisible = true;
             base.Initialize();
         }
-
-        /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
-        /// </summary>
         protected override void LoadContent()
         {
+            SoundManager.Initialize(this.Content);
+
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             titleScreen = Content.Load<Texture2D>(@"Textures\TitleScreen");
             spriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet");
             Background = Content.Load<Texture2D>(@"Textures\Background");
+            gameOver = Content.Load<Texture2D>(@"Textures\GameOver");
+            dogg = Content.Load<Texture2D>(@"Textures\dogg");
+            pause = Content.Load<Texture2D>(@"Textures\Pause");
+
+            if (!is420)
+            {
+                ball = new Sprite(
+                    new Vector2(this.Window.ClientBounds.Width / 2 - 400, this.Window.ClientBounds.Height / 2 - 200),
+                    spriteSheet,
+                    new Rectangle(0, 0, 802, 233),
+                    Vector2.Zero);
+            }
+
+            if (is420)
+            {
+                dog = new Sprite(
+                new Vector2(this.Window.ClientBounds.Width / 2, this.Window.ClientBounds.Height / 2),
+                dogg,
+                new Rectangle(0, 0, 190, 150),
+                Vector2.Zero);
+            }
+            newgame = new Sprite(
+                new Vector2(this.Window.ClientBounds.Width / 2 - 351/2, this.Window.ClientBounds.Height-135-50),
+                spriteSheet,
+                new Rectangle(591, 326, 351, 135),
+                Vector2.Zero);
+
+
+
+            pericles14 = Content.Load<SpriteFont>(@"Fonts\Pericles14");
             // TODO: use this.Content to load your game content here
         }
 
-        /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
         /// all content.
-        /// </summary>
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
         }
 
-        /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
+            MouseState ms = Mouse.GetState();
+            Vector2 mousePoint = new Vector2(ms.X, ms.Y);
+
+
+
+            //NOTE: KeyboardState MUST be in the update method in order to work.  Not sure why.  Ask Tanczos later.
+            KeyboardState kb = Keyboard.GetState();
             // TODO: Add your update logic here
             switch (gameState)
             {
                 case GameStates.TitleScreen:
+                    if (kb.IsKeyDown(Keys.Space))
+                    {
+                        gameState = GameStates.CharacterSelection;
+                       
+                    }
+                    break;
+
+                case GameStates.CharacterSelection:
+                    if (kb.IsKeyDown(Keys.C))
+                    {
+                        ball = new Sprite(
+                            new Vector2(this.Window.ClientBounds.Width / 2, this.Window.ClientBounds.Height / 2),
+                            spriteSheet,
+                            new Rectangle(0, 0, 190, 150),
+                            Vector2.Zero);
+
+                        gameState = GameStates.Playing;
+                        SoundManager.playamerica();
+                    }
+
+                    else if (kb.IsKeyDown(Keys.D))
+                    {
+                        ball = new Sprite(
+                            new Vector2(this.Window.ClientBounds.Width / 2, this.Window.ClientBounds.Height / 2),
+                            spriteSheet,
+                            new Rectangle(200, 0, 200, 164),
+                            Vector2.Zero);
+
+                        gameState = GameStates.Playing;
+                        SoundManager.playdeadpool();
+                    }
+
+                    else if (kb.IsKeyDown(Keys.I))
+                    {
+                        ball = new Sprite(
+                            new Vector2(this.Window.ClientBounds.Width / 2, this.Window.ClientBounds.Height / 2),
+                            spriteSheet,
+                            new Rectangle(415, 0, 190, 160),
+                            Vector2.Zero);
+
+                        gameState = GameStates.Playing;
+                        SoundManager.playironman();
+                    }
+
+                    else if (kb.IsKeyDown(Keys.S))
+                    {
+                        ball = new Sprite(
+                            new Vector2(this.Window.ClientBounds.Width / 2, this.Window.ClientBounds.Height / 2),
+                            spriteSheet,
+                            new Rectangle(600, 0, 200, 160),
+                            Vector2.Zero);
+
+                        gameState = GameStates.Playing;
+                        SoundManager.playspiderman();
+                    }
+
                     break;
 
                 case GameStates.Playing:
+
+                    if(kb.IsKeyDown(Keys.D4) && kb.IsKeyDown(Keys.D2) && kb.IsKeyDown(Keys.D0))
+                    {
+                        is420 = true;
+
+                        ball = new Sprite(
+                            new Vector2(this.Window.ClientBounds.Width / 2, this.Window.ClientBounds.Height / 2),
+                            dogg,
+                            new Rectangle(0, 0, 300, 395),
+                            Vector2.Zero);
+                    }
+                    if (kb.IsKeyDown(Keys.P) && !pdown)
+                    {
+                        gameState = GameStates.Pause;
+                        pdown = true;
+                    }
+                    else if (kb.IsKeyUp(Keys.P))
+                    {
+                        pdown = false;
+                    }
+
+                    if (ms.LeftButton == ButtonState.Pressed && !clicked)
+                    {
+                        
+                        Vector2 click = new Vector2(ms.X, ms.Y);
+                        Vector2 offset = (ball.Center - click);
+
+                        clicked = true;
+
+                        if (Vector2.Distance(click, ball.Center) < ball.BoundingBoxRect.Height / 2)
+                        {
+                            SoundManager.playJump();
+
+                            offset.Y = -Math.Abs(offset.Y);
+                            offset.X = MathHelper.Clamp(offset.X, -5, 5);
+                            offset.Normalize();
+                            offset *= 800; // f offset = new Vector2(-1500) + offset*-100;
+
+                            ball.Velocity = offset;
+
+
+
+                            Vector2 vc = ball.Velocity;
+                            float speed = vc.Length();
+                            vc.Normalize();
+                            vc *= Math.Min(speed, 800f);
+                            ball.Velocity = vc;
+
+                            clicks++;
+                        }
+                    }
+                    else if (ms.LeftButton == ButtonState.Released)
+                        clicked = false;
+
+
+                    if (ball.Location.Y >= 650  || ball.Location.X <=0 || ball.Location.X >= 825)
+                    {
+                        clicks = 0;
+                        gameState = GameStates.GameOver;
+                        SoundManager.stopSongs();
+                        SoundManager.playcantTouch();
+                    }
+
+                    /*
+                    if ((ms.LeftButton == ButtonState.Pressed) &&
+             (currentSquare.Contains(ms.X, ms.Y)))
+                    {
+                        playerScore++;
+                        timeRemaining = 0.0f;
+                        TimePerSquare = TimePerSquare - 0.05f;
+                    }*/
+                    ball.Velocity += new Vector2(0, 20f);
+
+                    ball.Update(gameTime);
+                        break;
+
+                case GameStates.Pause:
+
+                    if (kb.IsKeyDown(Keys.P) && !pdown)
+                    {
+                        gameState = GameStates.Playing;
+                        pdown = true;
+                    }
+                    else if (kb.IsKeyUp(Keys.P))
+                    {
+                        pdown = false;
+                    }
+
                     break;
 
                 case GameStates.GameOver:
+
+                    
+                    Vector2 clicker = new Vector2(ms.X, ms.Y);
+                    if (ms.LeftButton == ButtonState.Pressed && !clicked && Vector2.Distance(clicker, newgame.Center) < newgame.BoundingBoxRect.Height / 2)
+                    {
+                        gameState = GameStates.CharacterSelection;
+
+                        SoundManager.stopSongs();
+
+                        ball = new Sprite(
+                            new Vector2(this.Window.ClientBounds.Width / 2 - 400, this.Window.ClientBounds.Height / 2 - 200),
+                            spriteSheet,
+                            new Rectangle(0, 0, 802, 233),
+                            Vector2.Zero);
+                    }
+                    else if (ms.LeftButton == ButtonState.Released)
+                        clicked = false;
+
                     break;
             }
 
             base.Update(gameTime);
         }
 
-        /// <summary>
         /// This is called when the game should draw itself.
-        /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
@@ -113,6 +325,55 @@ namespace KeepItUpCorrect
                     new Rectangle(0, 0, this.Window.ClientBounds.Width,
                         this.Window.ClientBounds.Height),
                         Color.White);
+            }
+
+            if (gameState == GameStates.Playing)
+            {
+                spriteBatch.Draw(Background,
+                    new Rectangle(0, 0, this.Window.ClientBounds.Width,
+                        this.Window.ClientBounds.Height),
+                        Color.White);
+
+                if (!is420)
+                {
+                    ball.Draw(spriteBatch);
+                }
+                
+                    spriteBatch.DrawString(
+                        pericles14,
+                        "Score: " + clicks.ToString(),
+                        scoreLocation,
+                        Color.Black);
+                if(is420)
+                {
+                    ball.Draw(spriteBatch);
+                }
+                
+            }
+
+            if(gameState == GameStates.Pause)
+            {
+                spriteBatch.Draw(pause,
+                    new Rectangle(0, 0, this.Window.ClientBounds.Width,
+                        this.Window.ClientBounds.Height),
+                        Color.White);
+            }
+
+            if(gameState == GameStates.GameOver)
+            {
+                
+
+                spriteBatch.Draw(gameOver,
+                    new Rectangle(0, 0, this.Window.ClientBounds.Width,
+                        this.Window.ClientBounds.Height),
+                        Color.White);
+
+                newgame.Draw(spriteBatch);
+            }
+
+            if (gameState == GameStates.CharacterSelection)
+            {
+                ball.Draw(spriteBatch);
             }
 
             spriteBatch.End();
